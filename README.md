@@ -1,0 +1,1 @@
+# grupo3_aimetta_heinen_ia_2026
