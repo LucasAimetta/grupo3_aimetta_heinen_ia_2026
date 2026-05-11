@@ -98,7 +98,7 @@ class AresProblem(SearchProblem):
         if (state[1]>state[3]) and (state[3]==2 or (state[3]==1 and 0==muestras_por_recolectar(state))): 
             acciones.append(("depositar",None))
         
-        if state[0] not in sombras and state[1] <20:
+        if state[0] not in sombras and state[1] <=10:
             acciones.append(("recargar",None))
         return acciones
 
