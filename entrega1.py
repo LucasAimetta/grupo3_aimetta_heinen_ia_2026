@@ -30,7 +30,7 @@ def distancia_a_las_muestras(state):
 def planear_rover(rover_inicio,bateria_inicial,zonas_sombra,muestras_igneas,muestras_sedimentarias):
     global sombras
     sombras = zonas_sombra
-    state = (rover_inicio,bateria_inicial,"",0,muestras_igneas,muestras_sedimentarias)
+    state = (rover_inicio,bateria_inicial,"",0,tuple(muestras_igneas),tuple(muestras_sedimentarias))
     problem = AresProblem(state)
     solution = astar(problem,graph_search=True)
     ares_actions=[]
@@ -85,9 +85,9 @@ class AresProblem(SearchProblem):
                 acciones.append(("sobremarcha",nueva_posicion))
 
         if state[1]>1:
-            if len(state[4])>0 and state[2] !="termico":
+            if len(state[4])>0 and state[2] !="termico" and state[0] in state[4]:
                 acciones.append(("equipar","termico"))
-            if len(state[5])>0 and state[2] !="percusion":
+            if len(state[5])>0 and state[2] !="percusion" and state[0] in state[5]:
                 acciones.append(("equipar","percusion"))
         if state[1]>3 and state[3]<2: #Si tiene bateria y espacio en la bodega
             if state[2]=="termico" and state[0] in state[4]: # Si esta en posicion de una muestra ignea y tiene el martillo termico
@@ -98,7 +98,7 @@ class AresProblem(SearchProblem):
         if (state[1]>state[3]) and (state[3]==2 or (state[3]==1 and 0==muestras_por_recolectar(state))): 
             acciones.append(("depositar",None))
         
-        if state[0] not in sombras and state[1] <=10:
+        if state[0] not in sombras and state[1] <20:
             acciones.append(("recargar",None))
         return acciones
 
@@ -165,3 +165,22 @@ class AresProblem(SearchProblem):
         
         return costo
 
+if __name__ == "__main__":
+    # Datos de ejemplo de la consigna
+    acciones = planear_rover(
+        rover_inicio=(0, 0),
+        bateria_inicial=20,
+        zonas_sombra=[(0, 1), (0, 2)],
+        muestras_igneas=[(1, 1), (1, 2)],
+        muestras_sedimentarias=[(2, 3)],
+    )
+
+    # Impresión de la secuencia válida de acciones
+    print("Secuencia de acciones encontrada:")
+    print("[")
+    for accion in acciones:
+        print(f"    {accion},")
+    print("]")
+    
+    # Verificación de cantidad
+    print(f"\nTotal de acciones: {len(acciones)}")
