@@ -1,0 +1,9 @@
+    La IA utilizada fue GEMINI
+
+    Al pedirle a una IA (GEMINI) que nos resuelva el problema con un prompt breve y las consignas + los test, nos dio una solucion, la cuál se aleja un poco a la creada por nosotros, la primera diferencia que notamos fue en el enfoque que hizo para que los tests pasen lo más rápido posible, un ejemplo de esto esta en el uso de una Heuristica (MOST_CONSTRAINED_VARIABLE) la cuál busca ubicar primero las variables que participen en un mayor número de restricciones.
+
+    En adición al primer parrafo, otro ejemplo de que se enfoco en el tiempo de respuesta fue la inclusión de la función Romper la simetría La cual es una técnica que "evita que el algoritmo desperdicie tiempo evaluando configuraciones visualmente idénticas, como intercambiar de lugar dos piezas iguales. Al imponer una regla matemática simple que obligue a ordenar estas piezas (por ejemplo, que la pieza A siempre vaya antes que la B), el programa descarta automáticamente todos esos clones inútiles". Esto ayudaría a su programa a encontrar en un menor tiempo una solución completa y consistente.
+
+    A la hora de comparar, como ha resuelto la lógica del problema, hemos  encontrado diferencias en cómo resolvio las restricciones de "Aislamiento de Generadores" y "Seguridad Informática", en ambos la lógica es la misma, por lo que creo un único metodo para resolverlas y unicamente se preocupo de asignar a las variables involucradas dicha restriccion. Además utilizo expresiones lambda, para evitar ciclos for, lo cuál hace mas legible y eficiente el programa.
+
+    Por último, a la hora de ejecutarlos nos llevamos una sorpesa, ya que a pesar del foco en encontrar una respuesta en el menor tiempo posible, el programa de la IA, la encontró en 0.67 s mientras que la nuestra lo hizo en 0.18 s, por lo que concluimos que en su obsesión en mejorar el tiempo, terminó empeorando su programa y el rendimiento.
