@@ -66,6 +66,7 @@ def ruta_de_evacuacion(vars,vals):
 
 def build_camp(camp_size, habs, generators, labs, deposits, airlocks, craters):
     global celdas_con_craters
+    fila,columna = camp_size
     celdas_con_craters = craters
     celdas_grilla=[]    #Creamos lista con las casillas de la grilla
     celdas_borde = []     #Creamos lista con las casillas que estan en el borde
@@ -84,7 +85,7 @@ def build_camp(camp_size, habs, generators, labs, deposits, airlocks, craters):
     for i,_ in enumerate(range(habs)): #Iteramos la cantidad de modulos del tipo hab que haya.
         modulo = f"hab{i}" #Cada iteracion, le asignara un nombre diferente al modulo, hab0, hab1 ...
         lista_modulos.append(modulo) #Agregamos a las variables el modulo+NRO iteracion
-        celdas_posible_por_modulo[modulo]=list(x for x in celda if x not in celdas_borde) #Agregamos al diccionario las posibles celdas en donde ubicaria al modulo
+        celdas_posible_por_modulo[modulo]=list(x for x in celdas_grilla if x not in celdas_borde) #Agregamos al diccionario las posibles celdas en donde ubicaria al modulo
     for i,_ in enumerate(range(generators)):
         modulo = f"gen{i}"
         lista_modulos.append(modulo)

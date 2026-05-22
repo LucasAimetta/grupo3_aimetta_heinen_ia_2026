@@ -47,8 +47,8 @@ def test_modulo_existe():
 
 @pytest.fixture()
 def build_camp():
-    import entrega2_por_ia
-    fn = getattr(entrega2_por_ia, "build_camp", None)
+    import entrega2
+    fn = getattr(entrega2, "build_camp", None)
     return fn
 
 
